@@ -306,6 +306,7 @@ public class GuiMainMenu extends GuiScreen
         {
             this.realmsButton = this.addButton(new GuiButton(14, this.width / 2 - 100, p_73969_1_ + p_73969_2_ * 2, I18n.format("Fork on Github")));
         }
+        this.buttonList.add(new GuiButton(15, this.width / 2 + 2, p_73969_1_ + p_73969_2_ * 2, 98, 20, "Discord"));
     }
 
     /**
@@ -354,6 +355,11 @@ public class GuiMainMenu extends GuiScreen
             this.switchToRealms();
         }
 
+        if (button.id == 15)
+        {
+        this.openDiscordLink();
+        }
+
         if (button.id == 4)
         {
             this.mc.shutdown();
@@ -386,6 +392,20 @@ public class GuiMainMenu extends GuiScreen
         if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
             try {
                 Desktop.getDesktop().browse(new URI("https://github.com/catfoolyou/Eaglercraft-1.12"));
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+    private void openDiscordLink()
+    {
+        String discordUrl = "https://discord.gg/MDchjAffxh";
+    
+        if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+            try {
+                Desktop.getDesktop().browse(new URI(discordUrl));
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             } catch (IOException e) {
